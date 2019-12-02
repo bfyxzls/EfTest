@@ -12,6 +12,11 @@ namespace EFIdentity
     /// </summary>
     public static class EdmMemberExtensions
     {
+        /// <summary>
+        /// 扩展方法，它需要写在静态类里，使用时需要引用命名空间
+        /// </summary>
+        /// <param name="this"></param>
+        /// <returns></returns>
         public static StoreGeneratedPattern StoreGeneratedPattern2(this EdmMember @this)
         {
             const string name = "http://schemas.microsoft.com/ado/2009/02/edm/annotation:StoreGeneratedPattern";
@@ -24,8 +29,16 @@ namespace EFIdentity
 
             return (StoreGeneratedPattern)Enum.Parse(typeof(StoreGeneratedPattern), (string)metaDataProperty.Value);
         }
-
-        public static bool IsStoreGeneratedIdentity2(EdmMember @this)
+        /// <summary>
+        /// 普通方法
+        /// </summary>
+        /// <param name="this"></param>
+        /// <returns></returns>
+        public static StoreGeneratedPattern StoreGeneratedPattern3(EdmMember @this)
+        {
+            return @this.StoreGeneratedPattern2();
+        }
+            public static bool IsStoreGeneratedIdentity2(EdmMember @this)
         {
             return StoreGeneratedPattern2(@this) == StoreGeneratedPattern.Identity;
         }

@@ -31,7 +31,7 @@ namespace EFIdentity
             var properties = entityTypes.SelectMany(type => type.Properties);
             foreach (var item in properties)
             {
-                Console.WriteLine(item.Name + "是否自增" + item.StoreGeneratedPattern2());
+                Console.WriteLine(item.Name + "是否自增" + EdmMemberExtensions.StoreGeneratedPattern3(item));
             }
             Console.ReadKey();
 
